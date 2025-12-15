@@ -8,7 +8,7 @@ navigator.serviceWorker
   })
 
 const openCameraBtn = document.getElementById('openCamera')
-const cameraContainer = document.getElementById('cameraContainer')
+const cameraContainer = document.getElementById('camaraContainer')
 const video = document.getElementById('video')
 const takePhotoBtn = document.getElementById('takePhoto')
 const canvas = document.getElementById('canvas')
