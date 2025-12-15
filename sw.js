@@ -1,6 +1,6 @@
 const CACHE_NAME = 'camara-pwa-v1'
 const urlsToCache = [
-  '/',
+  './',
   './index.html',
   './app.js',
   './manifest.json',
@@ -11,9 +11,20 @@ self.addEventListener('install', (event) => {
   event.waitUntil(
     caches.open(CACHE_NAME).then(function (cache) {
       console.log('Cache opened')
-      return cache.addAll(urlsToCache)
+      // Cachear archivos individualmente para mejor manejo de errores
+      return Promise.all(
+        urlsToCache.map(function (url) {
+          return cache.add(url).catch(function (error) {
+            console.error('Failed to cache:', url, error)
+            // No detenemos la instalación si un archivo falla
+            return null
+          })
+        })
+      )
     })
   )
+  // Activar el service worker inmediatamente
+  self.skipWaiting()
 })
 
 self.addEventListener('fetch', (event) => {
@@ -37,7 +48,10 @@ self.addEventListener('activate', (event) => {
             return caches.delete(cacheName)
           }
         })
-      )
+      ).then(function () {
+        // Tomar control de todas las páginas inmediatamente
+        return self.clients.claim()
+      })
     })
   )
 })
