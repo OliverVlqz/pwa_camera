@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <title>Document</title>
+    <link
+      rel="manifest"
+      href="manifest.json"
+    />
+    <meta
+      name="theme-color"
+      content="#ffffff"
+    />
+    <meta
+      name="apple-mobile-web-app-capable"
+      content="yes"
+    />
+    <meta
+      name="apple-mobile-web-app-status-bar-style"
+      content="black-translucent"
+    />
+    <link
+      rel="apple-touch-icon"
+      href="icons/icon-192x192.png"
+    />
+  </head>
+  <body>
+    <h1>Camara pwa</h1>
+    <button id="openCamera">Start Camera</button>
+    <div
+      id="camaraContainer"
+      style="display: none"
+    >
+      <video
+        id="video"
+        width="320"
+        height="240"
+        autoplay
+      ></video>
+      <br />
+      <button id="takePhoto">Take Photo</button>
+      <canvas
+        id="canvas"
+        width="320"
+        height="240"
+        style="display: none"
+      ></canvas>
+    </div>
+  </body>
+  <script src="app.js"></script>
+</html>
